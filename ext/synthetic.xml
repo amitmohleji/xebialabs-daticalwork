@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+	<type type="datical.DB" extends="generic.Container">
+		<property name="daticalHomePath" />
+		<property name="daticalDriverPath" />
+	</type>
+
+	<type type="datical.BaseConfig" extends="generic.Resource" virtual="true">
+	</type>
+	
+	<type type="datical.DeployedBaseConfig" extends="generic.ExecutedScript" virtual="true">
+		<property name="createScript" hidden="true" default="datical/performDaticalOperations.sh" />
+		<property name="noopScript" hidden="true" default="datical/performDaticalOperations.sh" />
+		<property name="projectDirectory" />
+		<property name="environmentName" />		
+	</type>
+	
+
+	<type type="datical.DeployedCheckDrivers" extends="datical.DeployedBaseConfig" container-type="datical.DB" deployable-type="datical.CheckDrivers">
+		<generate-deployable type="datical.CheckDrivers" extends="datical.BaseConfig" />
+		
+		<property name="createVerb" hidden="true" default="Checking Driver Availability for DaticalDB" />
+		<property name="noopVerb" hidden="true" default="Checking Driver Availability for DaticalDB" />
+		<property name="createOrder" hidden="true" kind="integer" default="51" />
+		<property name="noopOrder" hidden="true" kind="integer" default="51" />
+	</type>
+	<type-modification type="datical.CheckDrivers">
+		<property name="environmentName" hidden="true" default="none" required="false" />
+	</type-modification>
+
+	<type type="datical.DeployedSnapshot" extends="datical.DeployedBaseConfig" container-type="datical.DB" deployable-type="datical.Snapshot">
+		<generate-deployable type="datical.Snapshot" extends="datical.BaseConfig" />
+		<property name="createVerb" hidden="true" default="Creating snapshot for DaticalDB" />
+		<property name="noopVerb" hidden="true" default="Creating snapshot for DaticalDB" />
+		<property name="createOrder" hidden="true" kind="integer" default="52" />
+		<property name="noopOrder" hidden="true" kind="integer" default="52" />
+	</type>
+	<type type="datical.DeployedChangeLogDiff" extends="datical.DeployedBaseConfig" container-type="datical.DB" deployable-type="datical.ChangeLogDiff">
+		<generate-deployable type="datical.ChangeLogDiff" extends="datical.BaseConfig" />
+		<property name="createVerb" hidden="true" default="Creating Difference Change Log  for DaticalDB" />
+		<property name="noopVerb" hidden="true" default="Creating Difference Change Log  for DaticalDB" />
+		<property name="createOrder" hidden="true" kind="integer" default="53" />
+		<property name="noopOrder" hidden="true" kind="integer" default="53" />
+	</type>
+	<type type="datical.DeployedReportDiff" extends="datical.DeployedBaseConfig" container-type="datical.DB" deployable-type="datical.ReportDiff">
+		<generate-deployable type="datical.ReportDiff" extends="datical.BaseConfig" />
+		<property name="createVerb" hidden="true" default="Creating Difference Report for DaticalDB" />
+		<property name="noopVerb" hidden="true" default="Creating Difference Report for DaticalDB" />
+		<property name="createOrder" hidden="true" kind="integer" default="54" />
+		<property name="noopOrder" hidden="true" kind="integer" default="54" />
+	</type>
+	<type type="datical.DeployedForecast" extends="datical.DeployedBaseConfig" container-type="datical.DB" deployable-type="datical.Forecast">
+		<generate-deployable type="datical.Forecast" extends="datical.BaseConfig" />
+		<property name="createVerb" hidden="true" default="Forcasting Changes for DaticalDB" />
+		<property name="noopVerb" hidden="true" default="Forcasting Changes for DaticalDB" />
+		<property name="createOrder" hidden="true" kind="integer" default="55" />
+		<property name="noopOrder" hidden="true" kind="integer" default="55" />
+	</type>
+	<type type="datical.DeployedDeploy" extends="datical.DeployedBaseConfig" container-type="datical.DB" deployable-type="datical.Deploy">
+		<generate-deployable type="datical.Deploy" extends="datical.BaseConfig" />
+		<property name="createVerb" hidden="true" default="Deploying changes for DaticalDB" />
+		<property name="noopVerb" hidden="true" default="Deploying changes for DaticalDB" />
+		<property name="createOrder" hidden="true" kind="integer" default="56" />
+		<property name="noopOrder" hidden="true" kind="integer" default="56" />
+	</type>
+    <type type="datical.DeployedChangeLogXML" extends="generic.CopiedArtifact" container-type="datical.DB" deployable-type="datical.ChangeLogXML">
+    <generate-deployable type="datical.ChangeLogXML" extends="generic.File" />
+    <property name="targetDirectory"/>
+    </type>
+
+</synthetic>
